@@ -34,11 +34,11 @@ The repository is organized by module:
 
 ```text
 .
-├── 01-intro              # RAG basics, OpenAI API, Elasticsearch
-├── 02-agents             # Agentic RAG, function calling, PydanticAI
-├── 03-vector-search      # Embeddings, semantic search, hybrid retrieval
-├── 04-evaluation         # Retrieval metrics, LLM-as-a-Judge
-└── 05-monitoring         # Traces, feedback, production quality
+├── 01-rag            # RAG basics, OpenAI API, Elasticsearch
+├── 02-agents         # Agentic RAG, function calling, PydanticAI
+├── 03-vector-search  # Embeddings, semantic search, hybrid retrieval
+├── 04-evaluation     # Retrieval metrics, LLM-as-a-Judge
+└── 05-monitoring     # Traces, feedback, production quality
 ```
 
 ## Acknowledgements
