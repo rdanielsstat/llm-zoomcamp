@@ -2,6 +2,8 @@
 
 This project builds a retrieval-augmented generation (RAG) system in Python and turns it into an agent. The knowledge base is a set of course lessons in Markdown, pulled from a GitHub repository at a pinned commit so the data stays fixed. This document explains how both versions work, the ideas behind them, and the tools involved. The accompanying notebook (`course_rag.ipynb`) implements everything described here.
 
+> **Credit:** This is a personal summary of the Agentic RAG module of [LLM Zoomcamp](https://github.com/DataTalksClub/llm-zoomcamp) (2026), a free course created and taught by [Alexey Grigorev](https://github.com/alexeygrigorev) at [DataTalks.Club](https://datatalks.club). The concepts, the example code, and the diagrams are his work. This document restates them in my own words for my own reference, and the diagrams below are adapted from his course lesson pages. Full attribution is at the [end of this document](#credits-and-attribution).
+
 ## Why RAG
 
 A large language model is a neural network trained to predict the next piece of text. Given a prompt, it produces a plausible continuation. That works well for common knowledge, but it runs into three limits:
@@ -44,6 +46,8 @@ flowchart TD
     LLM --> ANSWER
     ANSWER --> U
 ```
+
+*Diagram adapted from the LLM Zoomcamp "RAG" lesson by Alexey Grigorev (DataTalks.Club).*
 
 The model only sees the documents you hand it, so the answer is only as good as the retrieval. Search quality is the part that matters most.
 
@@ -108,6 +112,8 @@ flowchart TD
     U --> L1 --> S1 --> L2 --> S2 --> A
 ```
 
+*Diagram adapted from the LLM Zoomcamp "Function Calling" lesson by Alexey Grigorev (DataTalks.Club).*
+
 In RAG, the developer fixes the steps up front. In an agent, the model chooses the steps at run time.
 
 ### Function calling
@@ -157,3 +163,15 @@ Going agentic means more round-trips, and each round-trip is a billable API call
 - An agent is RAG with the decision-making handed to the model. It can search more than once, fix its own mistakes, and decide when to stop.
 - Function calling is the mechanism. You describe a tool as a schema, the model requests it, you run it, and you feed the result back.
 - The agentic loop is a while-loop that runs tools until the model stops asking. Every agent framework is a wrapper around that idea.
+
+## Credits and attribution
+
+All of the underlying material here was created by **Alexey Grigorev** for **LLM Zoomcamp 2026**, a free course run by **DataTalks.Club**. That includes the RAG and agentic RAG concepts, the example code patterns (the `rag()` pipeline, `RAGBase`, the function-calling flow, and the agent loop), and the two diagrams, which are adapted from the course lesson pages.
+
+I wrote this document as a summary for my own learning and as a record of what I worked through. I am not the author of the course or its ideas. Credit for the teaching and the original materials goes to the instructor and DataTalks.Club.
+
+- Course: [LLM Zoomcamp](https://github.com/DataTalksClub/llm-zoomcamp) (2026)
+- Instructor: [Alexey Grigorev](https://github.com/alexeygrigorev)
+- Organization: [DataTalks.Club](https://datatalks.club)
+- Module: [01-agentic-rag lessons](https://github.com/DataTalksClub/llm-zoomcamp/tree/main/01-agentic-rag/lessons)
+- Open-source libraries from the course, also by Alexey Grigorev: [minsearch](https://github.com/alexeygrigorev/minsearch), [sqlitesearch](https://github.com/alexeygrigorev/sqlitesearch), [toyaikit](https://github.com/alexeygrigorev/toyaikit), and [gitsource](https://github.com/alexeygrigorev/gitsource).
