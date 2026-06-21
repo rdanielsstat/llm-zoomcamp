@@ -1,6 +1,6 @@
 # Building RAG and Agentic RAG from Scratch
 
-This project builds a retrieval-augmented generation (RAG) system in Python and turns it into an agent. The knowledge base is a set of course lessons in Markdown, pulled from a GitHub repository at a pinned commit so the data stays fixed. This document explains how both versions work, the ideas behind them, and the tools involved. The accompanying notebook (`course_rag.ipynb`) implements everything described here.
+This project builds a retrieval-augmented generation (RAG) system in Python and turns it into an agent. The knowledge base is a set of course lessons in Markdown, pulled from a GitHub repository at a pinned commit. This document explains how both versions work, the ideas behind them, and the tools involved. The accompanying notebook (`course_rag.ipynb`) implements everything described here.
 
 > **Credit:** This is a personal summary of the Agentic RAG module of [LLM Zoomcamp](https://github.com/DataTalksClub/llm-zoomcamp) (2026), a free course created and taught by [Alexey Grigorev](https://github.com/alexeygrigorev) at [DataTalks.Club](https://datatalks.club). The concepts, the example code, and the diagrams are his work. This document restates them in my own words for my own reference, and the diagrams below are adapted from his course lesson pages. Full attribution is at the [end of this document](#credits-and-attribution).
 
@@ -10,9 +10,9 @@ A large language model is a neural network trained to predict the next piece of 
 
 - It only knows what was in its training data, so anything newer is invisible to it.
 - It cannot see your private documents, databases, or internal systems unless you put that information in front of it.
-- It sometimes produces confident answers that are wrong.
+- It sometimes produces confident answers that are wrong (hallucinations).
 
-RAG addresses all three by retrieving relevant documents at question time and handing them to the model alongside the question. The model no longer has to have memorized the answer. It reads the supplied context and generates a response grounded in it. This remains the most common way LLMs are used in production.
+RAG addresses all three by retrieving relevant documents at question time and handing them to the model alongside the question. The model reads the supplied context and generates a response grounded in it. This remains the most common way LLMs are used in production.
 
 ## How RAG works
 
