@@ -13,3 +13,5 @@ faq.db*
 *.db-wal
 
 __pycache__
+
+models/
