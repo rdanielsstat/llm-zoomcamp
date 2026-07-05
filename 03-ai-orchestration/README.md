@@ -105,3 +105,11 @@ Multilingual Agent: 282 input tokens, 202 output tokens, 484 total.
 English Brevity Agent: 217 input tokens, 48 output tokens, 265 total.
  
 Multilingual agent output tokens went from 91 (short) to 202 (long), about 2.2x more. That puts it in the 2 to 5x range, not a huge jump, but a real one. Makes sense since a longer summary just needs more words to say more, the cost scales with the length you ask for.
+
+## Modifying a Flow
+ 
+Changed the `english_brevity` task prompt from asking for exactly 1 sentence to asking for exactly 3 sentences. Ran it with `summary_length = long`.
+ 
+English Brevity Agent: 190 input tokens, 87 output tokens, 277 total.
+ 
+Original 1 sentence version (also long) used 48 output tokens. New 3 sentence version used 87. That's about 1.8x more, closest to the 2 to 4x range. Asking for more sentences in the prompt directly increases how much the model writes back, which increases the token count and the cost.
