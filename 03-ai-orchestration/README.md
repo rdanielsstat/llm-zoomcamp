@@ -88,7 +88,7 @@ Listed real 1.1 features: new UI filters, a no code dashboard editor, multi agen
  
 Without retrieved context, the model guesses and produces answers that sound plausible but are wrong. With retrieved context, the model reports what's actually in the documentation. This is the difference RAG makes: it grounds the answer in real, current information instead of relying on what the model happened to learn during training.
 
-## Token Usage
+## Token Usage, Short Summary
  
 Ran `4_simple_agent.yaml` with `summary_length = short`, other inputs left as default. Checked the token usage logged by the `log_token_usage` task.
  
@@ -96,3 +96,12 @@ Multilingual Agent: 282 input tokens, 91 output tokens, 373 total.
 English Brevity Agent: 106 input tokens, 46 output tokens, 152 total.
  
 Output tokens for the multilingual agent landed in the 60 to 100 range. Worth tracking this kind of thing since token counts map directly to cost, and comparing agents side by side shows which prompts are running lean and which aren't.
+
+## Token Usage, Long Summary
+ 
+Ran the same flow again with `summary_length = long`.
+ 
+Multilingual Agent: 282 input tokens, 202 output tokens, 484 total.
+English Brevity Agent: 217 input tokens, 48 output tokens, 265 total.
+ 
+Multilingual agent output tokens went from 91 (short) to 202 (long), about 2.2x more. That puts it in the 2 to 5x range, not a huge jump, but a real one. Makes sense since a longer summary just needs more words to say more, the cost scales with the length you ask for.
