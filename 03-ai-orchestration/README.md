@@ -113,3 +113,9 @@ Changed the `english_brevity` task prompt from asking for exactly 1 sentence to 
 English Brevity Agent: 190 input tokens, 87 output tokens, 277 total.
  
 Original 1 sentence version (also long) used 48 output tokens. New 3 sentence version used 87. That's about 1.8x more, closest to the 2 to 4x range. Asking for more sentences in the prompt directly increases how much the model writes back, which increases the token count and the cost.
+
+## Best Practices
+ 
+For production workflows that need deterministic, repeatable results with strict compliance requirements (financial reporting, regulated industries), the right approach is traditional task based workflows, not AI agents.
+ 
+AI agents produce variable output. Same input, different response, since LLM calls aren't deterministic (this showed up even in the token usage tests above, where numbers shifted slightly between runs with no changes made). Regulated workflows need the same input to produce the same output every time, along with a clear audit trail. Agents are useful for flexibility and open ended problems, but that flexibility is a liability when the requirement is predictability.
