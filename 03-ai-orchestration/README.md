@@ -1,8 +1,8 @@
-# Kestra AI Copilot vs ChatGPT
+## Kestra AI Copilot vs ChatGPT
  
 Same prompt given to both: "Create a Kestra flow that loads NYC taxi data from CSV to BigQuery."
  
-## ChatGPT's Output
+### ChatGPT's Output
  
 ```yaml
 id: nyc_taxi_csv_to_bigquery
@@ -39,7 +39,7 @@ tasks:
  
 Looks fine on the surface, but it uses a task type that does not exist in Kestra: `io.kestra.plugin.gcp.bigquery.LoadFromGcs`. Made up name. This flow would fail if you tried to run it.
  
-## Kestra AI Copilot's Output
+### Kestra AI Copilot's Output
  
 ```yaml
 id: jaguar_273629
@@ -64,7 +64,7 @@ tasks:
  
 Simpler flow, but every task type and property is real. `io.kestra.plugin.gcp.bigquery.Load` actually exists, and the properties used match the real plugin schema.
  
-## Why Copilot Won
+### Why Copilot Won
  
 Kestra's Copilot has access to Kestra's actual, current plugin documentation. It knows which plugins exist and what properties they take.
  
@@ -72,7 +72,7 @@ ChatGPT is working off general training data, so when it doesn't know the exact 
  
 Same story either way: Copilot generated a working flow, ChatGPT generated one that would fail on the first task.
 
-# RAG vs No RAG
+## RAG vs No RAG
  
 Ran `1_chat_without_rag.yaml` and `2_chat_with_rag.yaml`, both asking about Kestra 1.1 features.
  
@@ -87,3 +87,12 @@ Listed real 1.1 features: new UI filters, a no code dashboard editor, multi agen
 ### The Point
  
 Without retrieved context, the model guesses and produces answers that sound plausible but are wrong. With retrieved context, the model reports what's actually in the documentation. This is the difference RAG makes: it grounds the answer in real, current information instead of relying on what the model happened to learn during training.
+
+## Token Usage
+ 
+Ran `4_simple_agent.yaml` with `summary_length = short`, other inputs left as default. Checked the token usage logged by the `log_token_usage` task.
+ 
+Multilingual Agent: 282 input tokens, 91 output tokens, 373 total.
+English Brevity Agent: 106 input tokens, 46 output tokens, 152 total.
+ 
+Output tokens for the multilingual agent landed in the 60 to 100 range. Worth tracking this kind of thing since token counts map directly to cost, and comparing agents side by side shows which prompts are running lean and which aren't.
