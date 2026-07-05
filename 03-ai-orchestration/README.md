@@ -71,3 +71,19 @@ Kestra's Copilot has access to Kestra's actual, current plugin documentation. It
 ChatGPT is working off general training data, so when it doesn't know the exact plugin name, it guesses one that sounds right. That's how `LoadFromGcs` got invented.
  
 Same story either way: Copilot generated a working flow, ChatGPT generated one that would fail on the first task.
+
+# RAG vs No RAG
+ 
+Ran `1_chat_without_rag.yaml` and `2_chat_with_rag.yaml`, both asking about Kestra 1.1 features.
+ 
+### Without RAG
+ 
+Listed things like a plugin marketplace, OAuth2/JWT auth, and audit logs. None of these are actually Kestra 1.1 features. Some aren't Kestra features at all, others were added in different versions. The model had no real data to work from, so it filled in the answer using patterns from training data. Sounds confident, isn't accurate.
+ 
+### With RAG
+ 
+Listed real 1.1 features: new UI filters, a no code dashboard editor, multi agent AI systems, "Fix with AI," the Human Task feature, better air gapped support, and new plugins. This matches the actual release notes because the model pulled from retrieved documentation instead of guessing.
+ 
+### The Point
+ 
+Without retrieved context, the model guesses and produces answers that sound plausible but are wrong. With retrieved context, the model reports what's actually in the documentation. This is the difference RAG makes: it grounds the answer in real, current information instead of relying on what the model happened to learn during training.
