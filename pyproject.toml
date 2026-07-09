@@ -20,3 +20,4 @@ dependencies = [
 members = [
     "02-vector-search",
 ]
+exclude = ["04-evaluation"]
