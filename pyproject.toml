@@ -19,5 +19,6 @@ dependencies = [
 [tool.uv.workspace]
 members = [
     "02-vector-search",
+    "06-agent-traces-pipeline",
 ]
 exclude = ["04-evaluation", "05-monitoring"]
